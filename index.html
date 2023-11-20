@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="This is my awesome counter!">
+  <meta property="og:title" content="DRC ICC Penalty Calculator">
+  <meta property="og:description" content="Calculates the amount of penalties the DRC has incurred since the first violation of the ICC court ruling">
+  <meta property="og:image" content="https://raw.githubusercontent.com/Spikerama/ICC-Penalties-to-DRC-English/main/ICC%20Logo.png">
+  <meta property="og:url" content="https://spikerama.github.io/ICC-Penalties-to-DRC-English/">
+  <meta property="og:type" content="website">
+  <title>DRC ICC Penalty Calculator</title>
+  <style>
+    /* Your styles here */
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <i class="fas fa-dollar-sign"></i>
+      <span id="first-line-text">DRC PENALTIES FROM ICC VIOLATION </span>
+      <div class="counter">
+        <div class="counter-value">
+          <span>€</span><span id="count">0</span><span>+</span>
+        </div>
+      </div>
+      <span class="text">Based on first violation of ICC’s Emergency Arbitrator’s Order, in relation to Dathcom JVA, 11 April 2023. Penalty = EUR €50K daily until resolved.
+      </span>
+      <span class="text">Additional penalty imposed starting from November 15, 2023. Penalty = EUR €50K daily until resolved.</span>
+
+  <script>
+    // set start date as April 11, 2023 for the first penalty
+    const startDate1 = new Date("April 11, 2023 00:00:00");
+    // set start date as November 15, 2023 for the second penalty
+    const startDate2 = new Date("November 15, 2023 00:00:00");
+
+    // set the amount to accrue per day for each penalty in EUR
+    const amountPerDay1 = 50000; // First penalty
+    const amountPerDay2 = 50000; // Second penalty
+
+    function updateCounter() {
+      // get the current date
+      const currentDate = new Date();
+
+      // calculate the number of seconds elapsed for each penalty
+      const elapsedSeconds1 = Math.floor((currentDate - startDate1) / 1000);
+      const elapsedSeconds2 = Math.floor((currentDate - startDate2) / 1000);
+
+      // calculate the total amount accrued for each penalty
+      const totalAmount1 = elapsedSeconds1 * amountPerDay1 / (60 * 60 * 24);
+      const totalAmount2 = elapsedSeconds2 * amountPerDay2 / (60 * 60 * 24);
+
+      // update the counter value based on the sum of both penalties
+      const countElement = document.getElementById("count");
+      countElement.textContent = (totalAmount1 + totalAmount2).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+
+    // update the counter every second
+    setInterval(updateCounter, 1000);
+  </script>
+</body>
+</html>
